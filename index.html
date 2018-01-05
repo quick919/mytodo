@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://unpkg.com/vue"></script>
+    <title>mytodo</title>
+</head>
+
+<body>
+    <div id="taskArea">
+        <input id="newTaskText" v-model="newTask" v-on:keydown.enter="addTask" type="text" size="30">
+        <input v-on:click="addTask" id="addNewTask" type="button" value="add Task">
+        <input v-on:click="deleteTask" id="deleteTask" type="button" value="delete Task">
+
+
+        <ul>
+            <li v-for="item in list">
+                <div class="line">
+                    <div class="box" v-cloak>
+                        <input type="checkbox" v-on:click="item.done = !item.done, doneTask(item)" :checked="item.done">
+                        <span v-if="!item.edit" v-text="item.task" v-on:click="item.edit = true" v-bind:class="{done: item.done}">{{item.task}}</span>
+                        <input v-if="item.edit" v-model="item.task" type="text " v-on:blur="item.edit = false, editTask(item) " size="30">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="./js/DbOpeartion.js "></script>
+    <script src="./build/bundle.js "></script>
+    <script src="./js/main.js "></script>
+
+</body>
+
+</html>
