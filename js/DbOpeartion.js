@@ -17,10 +17,13 @@ var DbOperation = {};
 
   function initialize() {
     return new Promise((resolve, reject) => {
-      db.find({}, function(err, docs) {
-        ns.objects = docs;
-        resolve(ns.objects);
-      });
+      db
+        .find({})
+        .sort({ date: 1 })
+        .exec(function(err, docs) {
+          ns.objects = docs;
+          resolve(ns.objects);
+        });
     });
   }
 

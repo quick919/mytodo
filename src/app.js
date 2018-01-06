@@ -1,6 +1,7 @@
 var app = {};
 (function(ns) {
   const shortId = require("shortid");
+  const moment = require("moment");
 
   DbOperation.initialize().then(objects => {
     app2 = new Vue({
@@ -55,7 +56,8 @@ var app = {};
       id: id,
       task: newTaskText,
       edit: false,
-      done: false
+      done: false,
+      date: moment().format()
     };
     DbOperation.insert(obj);
     return obj;
